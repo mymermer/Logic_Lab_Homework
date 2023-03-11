@@ -1,26 +1,12 @@
 `timescale 1ns / 1ps
+
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 11.03.2023 20:07:37
-// Design Name: 
-// Module Name: mux_module
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
+//Abdullah Jafar Mansour Shamout 150200919
+//Muhammed Yusuf Mermer 150220762
 //////////////////////////////////////////////////////////////////////////////////
 
-
-module mux_module(
-
-    );
+module mux_module(in1,in2,in3,in4,in5,in6,in7,in8,s1,s2,s3,o);
+    input wire in1,in2,in3,in4,in5,in6,in7,in8;
+    input wire s1,s2,s3;
+    output wire o;
 endmodule
