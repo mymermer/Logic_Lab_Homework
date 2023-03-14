@@ -139,8 +139,11 @@ endmodule
 
 module bit_fulladder_module(a,b,cin,sum,carry);
     input wire a,b,cin;
+    wire carry1,carry2;
     output wire sum,carry;
-    
+    bit_halfadder_module half_adder1(a,b,sum1,carry1);
+    bit_halfadder_module half_adder2(sum1,cin,sum,carry2);
+    or_module or1(carry1,carry2,carry);
 endmodule
 
 

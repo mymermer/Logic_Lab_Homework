@@ -165,15 +165,20 @@ endmodule
 module bit_fulladder_module_test();
     reg in1;
     reg in2;
+    reg cin;
     
     wire sum,carry;
     
-    bit_fulladder_module uut(in1,in2,sum,carry);
+    bit_fulladder_module uut(in1,in2,cin,sum,carry);
     
     initial begin
-    in1=0;  in2=0;   #250;
-    in1=0;  in2=1;   #250;
-    in1=1;  in2=0;   #250;
-    in1=1;  in2=1;   #250;
+    in1=0;  in2=0;   cin=0;  #125;
+    in1=0;  in2=0;   cin=1;  #125;
+    in1=0;  in2=1;   cin=0;  #125;
+    in1=0;  in2=1;   cin=1;  #125;
+    in1=1;  in2=0;   cin=0;  #125;
+    in1=1;  in2=0;   cin=1;  #125;
+    in1=1;  in2=1;   cin=0;  #125;
+    in1=1;  in2=1;   cin=1;  #125;
     end
 endmodule
