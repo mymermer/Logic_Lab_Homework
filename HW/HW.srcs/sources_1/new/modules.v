@@ -146,9 +146,38 @@ module bit_fulladder_module(a,b,cin,sum,carry);
     or_module or1(carry1,carry2,carry);
 endmodule
 
+module four_bitadder_module(a,b,cin1,sum, carry);
+    input wire [3:0] a;
+    input wire [3:0] b;
+    input wire cin1;
+    wire cin2,cin3,cin4;
+    output wire [3:0] sum;
+    output wire carry;
+    
+    bit_fulladder_module adder1(a[0],b[0],cin1,sum[0],cin2);
+    bit_fulladder_module adder2(a[1],b[1],cin2,sum[1],cin3);
+    bit_fulladder_module adder3(a[2],b[2],cin3,sum[2],cin4);
+    bit_fulladder_module adder4(a[3],b[3],cin4,sum[3],carry);
+   
+endmodule
 
-
-
-
+module eight_bitadder_module(a,b,cin1,sum, carry);
+    input wire [7:0] a;
+    input wire [7:0] b;
+    input wire cin1;
+    wire cin2,cin3,cin4,cin5,cin6,cin7,cin8;
+    output wire [7:0] sum;
+    output wire carry;
+    
+    bit_fulladder_module adder1(a[0],b[0],cin1,sum[0],cin2);
+    bit_fulladder_module adder2(a[1],b[1],cin2,sum[1],cin3);
+    bit_fulladder_module adder3(a[2],b[2],cin3,sum[2],cin4);
+    bit_fulladder_module adder4(a[3],b[3],cin4,sum[3],cin5);
+    bit_fulladder_module adder5(a[4],b[4],cin5,sum[4],cin6);
+    bit_fulladder_module adder6(a[5],b[5],cin6,sum[5],cin7);
+    bit_fulladder_module adder7(a[6],b[6],cin7,sum[6],cin8);
+    bit_fulladder_module adder8(a[7],b[7],cin8,sum[7],carry);
+   
+endmodule
 
 

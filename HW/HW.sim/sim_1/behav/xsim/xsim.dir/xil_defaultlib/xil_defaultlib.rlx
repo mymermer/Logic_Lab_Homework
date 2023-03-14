@@ -3,5 +3,5 @@
 Oct 14 2022
 05:20:55
 C:/Users/abdul/Desktop/HW1/HW/HW.sim/sim_1/behav/xsim/glbl.v,1665704903,verilog,,,,glbl,,,,,,,,
-C:/Users/abdul/Desktop/HW1/HW/HW.srcs/sim_1/new/module_tests.v,1678730804,verilog,,,,F2_module_test;F3_module_test;and_module_test;bit_fulladder_module_test;bit_halfadder_module_test;decoder_3to8_module_test;nand_module_test;not_module_test;or_module_test;xor_module_test,,,,,,,,
-C:/Users/abdul/Desktop/HW1/HW/HW.srcs/sources_1/new/modules.v,1678802567,verilog,,C:/Users/abdul/Desktop/HW1/HW/HW.srcs/sim_1/new/module_tests.v,,F2;F3;and_module;bit_fulladder_module;bit_halfadder_module;decoder_3to8_module;eight_or_module;four_and_module;mux_8to1_module;nand_module;not_module;or_module;three_and_module;xor_module,,,,,,,,
+C:/Users/abdul/Desktop/HW1/HW/HW.srcs/sim_1/new/module_tests.v,1678828467,verilog,,,,F2_module_test;F3_module_test;and_module_test;bit_fulladder_module_test;bit_halfadder_module_test;decoder_3to8_module_test;eight_bitadder_module_test;four_bitadder_module_test;nand_module_test;not_module_test;or_module_test;xor_module_test,,,,,,,,
+C:/Users/abdul/Desktop/HW1/HW/HW.srcs/sources_1/new/modules.v,1678828858,verilog,,C:/Users/abdul/Desktop/HW1/HW/HW.srcs/sim_1/new/module_tests.v,,F2;F3;and_module;bit_fulladder_module;bit_halfadder_module;decoder_3to8_module;eight_bitadder_module;eight_or_module;four_and_module;four_bitadder_module;mux_8to1_module;nand_module;not_module;or_module;three_and_module;xor_module,,,,,,,,

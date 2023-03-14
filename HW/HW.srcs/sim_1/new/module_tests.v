@@ -182,3 +182,47 @@ module bit_fulladder_module_test();
     in1=1;  in2=1;   cin=1;  #125;
     end
 endmodule
+
+module four_bitadder_module_test();
+    reg [3:0] in1;
+    reg [3:0] in2;
+    reg cin1;
+    
+    wire [3:0] sum;
+    wire carry;
+    
+    four_bitadder_module uut(in1,in2,cin1,sum,carry);
+    
+    initial begin
+    in1=4'd 8;  in2=4'd 1;   cin1=0;  #125;   //8+1
+    in1=4'd 2;  in2=4'd 7;   cin1=0;  #125;   //2+7
+    in1=4'd 4;  in2=4'd 5;   cin1=0;  #125;   //4+5
+    in1=4'd 11; in2=4'd 10;  cin1=0;  #125; //11+10
+    in1=4'd 14; in2=4'd 5;   cin1=0;  #125;  //14+5
+    in1=4'd 15; in2=4'd 9;   cin1=0;  #125;  //15+9
+    in1=4'd 6;  in2=4'd 3;   cin1=0;  #125;   //6+3
+    in1=4'd 8;  in2=4'd 12;  cin1=0;  #125;  //8+12
+    end
+endmodule
+
+module eight_bitadder_module_test();
+    reg [7:0] in1;
+    reg [7:0] in2;
+    reg cin1;
+    
+    wire [7:0] sum;
+    wire carry;
+    
+    eight_bitadder_module uut(in1,in2,cin1,sum,carry);
+    
+    initial begin
+    in1=8'd 29;  in2=8'd 5;   cin1=0;  #125;   //29+5
+    in1=8'd 51;  in2=8'd 92;   cin1=0;  #125;   //51+92
+    in1=8'd 17;  in2=8'd 28;   cin1=0;  #125;   //17+28
+    in1=8'd 191; in2=8'd 2;  cin1=0;  #125; //191+2
+    in1=8'd 200; in2=8'd 95;   cin1=0;  #125;  //200+95
+    in1=8'd 49; in2=8'd 25;   cin1=0;  #125;  //49+25
+    in1=8'd 78;  in2=8'd 255;   cin1=0;  #125;   //78+255
+    in1=8'd 43;  in2=8'd 59;  cin1=0;  #125;  //43+59
+    end
+endmodule
