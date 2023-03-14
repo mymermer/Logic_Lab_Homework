@@ -102,3 +102,78 @@ module decoder_3to8_module_test();
     in1=1;  in2=1;   in3=1;  #125;
     end
 endmodule
+
+module F2_module_test();
+    reg a;
+    reg b;
+    reg c;
+    
+    wire o;
+    
+    F2 uut(a,b,c,o);
+    
+    initial begin
+    a=0;  b=0;   c=0;  #125;
+    a=0;  b=0;   c=1;  #125;
+    a=0;  b=1;   c=0;  #125;
+    a=0;  b=1;   c=1;  #125;
+    a=1;  b=0;   c=0;  #125;
+    a=1;  b=0;   c=1;  #125;
+    a=1;  b=1;   c=0;  #125;
+    a=1;  b=1;   c=1;  #125;
+    end
+endmodule
+
+
+module F3_module_test();
+    reg a;
+    reg b;
+    reg c;
+    
+    wire o;
+    
+    F3 uut(a,b,c,o);
+    
+    initial begin
+    a=0;  b=0;   c=0;  #125;
+    a=0;  b=0;   c=1;  #125;
+    a=0;  b=1;   c=0;  #125;
+    a=0;  b=1;   c=1;  #125;
+    a=1;  b=0;   c=0;  #125;
+    a=1;  b=0;   c=1;  #125;
+    a=1;  b=1;   c=0;  #125;
+    a=1;  b=1;   c=1;  #125;
+    end
+endmodule
+
+module bit_halfadder_module_test();
+    reg in1;
+    reg in2;
+    
+    wire sum,carry;
+    
+    bit_halfadder_module uut(in1,in2,sum,carry);
+    
+    initial begin
+    in1=0;  in2=0;   #250;
+    in1=0;  in2=1;   #250;
+    in1=1;  in2=0;   #250;
+    in1=1;  in2=1;   #250;
+    end
+endmodule
+
+module bit_fulladder_module_test();
+    reg in1;
+    reg in2;
+    
+    wire sum,carry;
+    
+    bit_fulladder_module uut(in1,in2,sum,carry);
+    
+    initial begin
+    in1=0;  in2=0;   #250;
+    in1=0;  in2=1;   #250;
+    in1=1;  in2=0;   #250;
+    in1=1;  in2=1;   #250;
+    end
+endmodule

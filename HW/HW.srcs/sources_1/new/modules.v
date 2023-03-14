@@ -107,3 +107,45 @@ module decoder_3to8_module(in1,in2,in3,o1,o2,o3,o4,o5,o6,o7,o8);
     three_and_module and8(in1,in2,in3,o8);
     
 endmodule
+
+module F2(a,b,c,o);
+    input wire a,b,c;
+    wire o1,o2,o3,o4,o5,o6,o7,o8;
+    output wire o;
+    
+    decoder_3to8_module decoder(a,b,c,o1,o2,o3,o4,o5,o6,o7,o8);
+    
+    or_module orA(o4,o6,o);
+endmodule
+
+module F3(a,b,c,o);
+    input wire a,b,c;
+    wire o1,o2,o3,o4,o5,o6,o7,o8;
+    wire extra;
+    output wire o;
+    
+    decoder_3to8_module decoder(a,b,c,o1,o2,o3,o4,o5,o6,o7,o8);
+    
+    or_module orA(o8,o7,extra);
+    or_module orB(extra,o7,o);
+endmodule
+
+module bit_halfadder_module(a,b,sum,carry);
+    input wire a,b;
+    output wire sum,carry;
+    xor_module xorA(a,b,sum);
+    and_module andA(a,b,carry);
+endmodule
+
+module bit_fulladder_module(a,b,cin,sum,carry);
+    input wire a,b,cin;
+    output wire sum,carry;
+    
+endmodule
+
+
+
+
+
+
+

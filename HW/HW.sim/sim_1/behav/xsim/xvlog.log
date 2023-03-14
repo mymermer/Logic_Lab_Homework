@@ -9,6 +9,10 @@ INFO: [VRFC 10-311] analyzing module nand_module
 INFO: [VRFC 10-311] analyzing module xor_module
 INFO: [VRFC 10-311] analyzing module mux_8to1_module
 INFO: [VRFC 10-311] analyzing module decoder_3to8_module
+INFO: [VRFC 10-311] analyzing module F2
+INFO: [VRFC 10-311] analyzing module F3
+INFO: [VRFC 10-311] analyzing module bit_halfadder_module
+INFO: [VRFC 10-311] analyzing module bit_fulladder_module
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/abdul/Desktop/HW1/HW/HW.srcs/sim_1/new/module_tests.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module and_module_test
 INFO: [VRFC 10-311] analyzing module or_module_test
@@ -16,3 +20,7 @@ INFO: [VRFC 10-311] analyzing module not_module_test
 INFO: [VRFC 10-311] analyzing module nand_module_test
 INFO: [VRFC 10-311] analyzing module xor_module_test
 INFO: [VRFC 10-311] analyzing module decoder_3to8_module_test
+INFO: [VRFC 10-311] analyzing module F2_module_test
+INFO: [VRFC 10-311] analyzing module F3_module_test
+INFO: [VRFC 10-311] analyzing module bit_halfadder_module_test
+INFO: [VRFC 10-311] analyzing module bit_fulladder_module_test
