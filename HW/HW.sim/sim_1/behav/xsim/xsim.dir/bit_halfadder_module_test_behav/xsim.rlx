@@ -1,6 +1,6 @@
 
 { 
-    crc :  9465782764558598412  , 
+    crc :  15381349170210732926  , 
     ccp_crc :  0  , 
     cmdline : " --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot bit_halfadder_module_test_behav xil_defaultlib.bit_halfadder_module_test xil_defaultlib.glbl" , 
     buildDate : "Oct 14 2022" , 

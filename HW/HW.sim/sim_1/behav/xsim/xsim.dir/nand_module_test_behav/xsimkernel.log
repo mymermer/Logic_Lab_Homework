@@ -1,7 +1,7 @@
-Running: xsim.dir/nand_module_test_behav/xsimk.exe -simmode gui -wdb nand_module_test_behav.wdb -simrunnum 0 -socket 53306
+Running: xsim.dir/nand_module_test_behav/xsimk.exe -simmode gui -wdb nand_module_test_behav.wdb -simrunnum 0 -socket 59516
 Design successfully loaded
-Design Loading Memory Usage: 8468 KB (Peak: 8468 KB)
-Design Loading CPU Usage: 46 ms
+Design Loading Memory Usage: 7812 KB (Peak: 7812 KB)
+Design Loading CPU Usage: 15 ms
 Simulation completed
-Simulation Memory Usage: 9048 KB (Peak: 9048 KB)
-Simulation CPU Usage: 61 ms
+Simulation Memory Usage: 8380 KB (Peak: 8380 KB)
+Simulation CPU Usage: 15 ms

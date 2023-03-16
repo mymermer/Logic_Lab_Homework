@@ -226,3 +226,17 @@ module eight_bitadder_module_test();
     in1=8'd 43;  in2=8'd 59;  cin1=0;  #125;  //43+59
     end
 endmodule
+
+module mux_8to1_module_test();
+    reg in1,in2,in3,in4,in5,in6,in7,in8,s1,s2,s3;
+    wire o;
+    
+    mux_8to1_module uut(in1,in2,in3,in4,in5,in6,in7,in8,s1,s2,s3,o);
+    
+    initial begin
+    in1=1;  in2=1;  in3=0;  in4=1;  in5=0;  in6=1;  in7=0;  in8=1;  s1=0;  s2=0;  s3=0; #250;
+    in1=1;  in2=0;  in3=0;  in4=0;  in5=1;  in6=0;  in7=0;  in8=1;  s1=1;  s2=0;  s3=0; #250;
+    in1=0;  in2=1;  in3=0;  in4=1;  in5=0;  in6=1;  in7=1;  in8=1;  s1=1;  s2=0;  s3=1; #250;
+    in1=0;  in2=0;  in3=0;  in4=1;  in5=1;  in6=0;  in7=1;  in8=1;  s1=1;  s2=1;  s3=1; #250;
+    end
+endmodule
