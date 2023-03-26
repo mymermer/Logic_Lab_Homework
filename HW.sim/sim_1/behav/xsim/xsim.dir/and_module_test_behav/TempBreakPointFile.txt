@@ -1,0 +1,3 @@
+Breakpoint File Version 1.0
+19,true,"C:/Users/abdul/Desktop/HW1/HW/HW.srcs/sim_1/new/module_tests.v"
+17,true,"C:/Users/abdul/Desktop/HW1/HW/HW.srcs/sim_1/new/module_tests.v"

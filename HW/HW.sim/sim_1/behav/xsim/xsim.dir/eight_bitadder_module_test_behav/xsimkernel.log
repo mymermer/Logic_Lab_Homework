@@ -1,7 +1,0 @@
-Running: xsim.dir/eight_bitadder_module_test_behav/xsimk.exe -simmode gui -wdb eight_bitadder_module_test_behav.wdb -simrunnum 0 -socket 60251
-Design successfully loaded
-Design Loading Memory Usage: 7864 KB (Peak: 7864 KB)
-Design Loading CPU Usage: 0 ms
-Simulation completed
-Simulation Memory Usage: 8484 KB (Peak: 8484 KB)
-Simulation CPU Usage: 0 ms
