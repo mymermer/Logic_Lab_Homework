@@ -34,28 +34,20 @@ module enabled_SR_latch(enabled,set,reset,Q,Qnot);
     nand_module E1(enabled,set,notset);
     nand_module E2(enabled,reset,notreset);
 
-    SR_latch SR1(notset,notreset,Q,Qnot);
+    SR_latch SR1(notset,notreset,Q,Qnot);   //I already created a SR latch which is made from NAND gates, so I will be reusing it instead of writing everything with NANDS again
 endmodule
 
-module D_latch(D,Q,Qnot);
+module enabled_D_latch(enabled,D,Q,Qnot);
 
-    input wire D;
-    output wire Q;
-    output wire Qnot;
+    input wire enabled,D;
     wire Dnot;
+    assign Dnot = ~D;//as it was said in the introduction part, it is fine to use ~,&,|,{} operators in our project
+    // that is why I used the assignment with ~instead of using a nand 
     
-    assign Dnot = ~D;
+    output wire Q,Qnot;
+    enabled_SR_latch D1(enabled,D,Dnot,Q,Qnot);
     
-    SR_latch Dlatch(D,Dnot,Q,Qnot);
 endmodule
-
-
-
-
-
-
-
-
 
 
 module JK_flipflop(input wire J, input wire K, input wire clock, output wire Q, output wire Qnot);
