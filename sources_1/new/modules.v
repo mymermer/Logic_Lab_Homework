@@ -35,3 +35,7 @@ module enabled_SR_latch(enabled,set,reset,Q,notQ);
     nand_module E2(enabled,reset,notreset);
     SR_latch SR1(notset,notreset,Q,notQ);
 endmodule
+
+
+module empty();
+endmodule
