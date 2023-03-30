@@ -35,3 +35,19 @@ module enabled_SR_latch_test();
         enabled= 1; set=1; reset=1; #125;
     end   
 endmodule
+
+
+module JK_flipflop_test();
+reg J,K,clock;
+wire Q,Qnot;
+JK_flipflop uut(J,K,clock,Q,Qnot);
+
+initial begin
+    clock=;
+    J=1'b 0; K=1'b 0; #250;
+    J=1'b 0; K=1'b 1; #250;
+    J=1'b 1; K=1'b 0; #250;
+    J=1'b 1; K=1'b 1; #250;
+end
+always #125 clock=~clock;
+endmodule
