@@ -33,6 +33,7 @@ module enabled_SR_latch(enabled,set,reset,Q,Qnot);
     
     nand_module E1(enabled,set,notset);
     nand_module E2(enabled,reset,notreset);
+
     SR_latch SR1(notset,notreset,Q,Qnot);
 endmodule
 
@@ -55,3 +56,4 @@ module JK_flipflop(input wire J, input wire K, input wire clock, output wire Q, 
 
 
 endmodule
+
