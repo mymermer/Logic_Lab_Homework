@@ -8,9 +8,9 @@ module SR_latch_test();
     reg set;
     reg reset;
     
-    wire Q, notQ;
+    wire Q, Qnot;
     
-    SR_latch uut(set,reset,Q,notQ);
+    SR_latch uut(set,reset,Q,Qnot);
     
     initial begin
         set=1; reset=1; #200;
@@ -24,6 +24,7 @@ endmodule
 module enabled_SR_latch_test();
     reg enabled,set,reset;
     wire Q,Qnot;
+    
     enabled_SR_latch uut(enabled,set,reset,Q,Qnot);
     initial begin
         enabled= 0; set=0; reset=0; #150;
@@ -34,6 +35,23 @@ module enabled_SR_latch_test();
         enabled= 1; set=1; reset=1; #150;
     end   
 endmodule
+
+module D_latch_test();
+    reg D;
+    
+    wire Q, Qnot;
+    
+    D_latch uut(D,Q,Qnot);
+    
+    initial begin
+        D=1; #500;
+        D=0; #500;
+    end
+endmodule
+
+
+
+
 
 
 module JK_flipflop_test();

@@ -37,6 +37,26 @@ module enabled_SR_latch(enabled,set,reset,Q,Qnot);
     SR_latch SR1(notset,notreset,Q,Qnot);
 endmodule
 
+module D_latch(D,Q,Qnot);
+
+    input wire D;
+    output wire Q;
+    output wire Qnot;
+    wire Dnot;
+    
+    assign Dnot = ~D;
+    
+    SR_latch Dlatch(D,Dnot,Q,Qnot);
+endmodule
+
+
+
+
+
+
+
+
+
 
 module JK_flipflop(input wire J, input wire K, input wire clock, output wire Q, output wire Qnot);
     wire notOfJQnot, JQnot, snot;
