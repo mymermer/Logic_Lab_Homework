@@ -42,6 +42,9 @@ wire Q,Qnot;
 JK_flipflop uut(J,K,clock,Q,Qnot);
 
 initial begin
+
+    clock=0;
+
     J=1'b 0; K=1'b 0; #250;
     J=1'b 0; K=1'b 1; #250;
     J=1'b 1; K=1'b 0; #250;
