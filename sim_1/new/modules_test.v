@@ -53,7 +53,7 @@ endmodule
 
 
 
-
+//change this
 module JK_flipflop_test();
 reg J,K,clock;
 wire Q,Qnot;
@@ -69,4 +69,27 @@ initial begin
     J=1'b 1; K=1'b 1; #250;
 end
 always #125 clock=~clock;
+endmodule
+
+
+
+module pulse_generator_test_ ();
+    reg[15:0] in;
+    reg clock;
+    reg load_flag;
+    wire out;
+
+    pulse_generator pg1(in,clock, load_flag, out);
+
+
+    initial begin
+    clock=0;
+    load_flag=1;
+    in=16'b101001001010100;   #500;
+    in=16'b010010110001101;  #500;
+    
+    end
+always #15 clock=~clock;
+always #100 load_flag=~load_flag;
+
 endmodule
