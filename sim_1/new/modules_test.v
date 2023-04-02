@@ -55,13 +55,17 @@ module D_flip_flop_test();
     wire Q, Qnot;
     
     D_flip_flop uut(clk,D,Q,Qnot);
+    
+    initial begin 
+        clk=0; 
+        forever #75 clk = ~clk;   
+    end
     initial begin
-        clk=0; D=0; #200;
-        clk=1; D=1; #200;
-        clk=0; D=1; #200;
-        clk=1; D=1; #200;
-        clk=1; D=0; #200;
-    end 
+        D=0; #250;
+        D=1; #250;
+        D=1; #250;
+        D=0; #250;
+    end
 endmodule
 
 //change this
