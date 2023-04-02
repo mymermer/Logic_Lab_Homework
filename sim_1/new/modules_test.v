@@ -36,22 +36,33 @@ module enabled_SR_latch_test();
     end   
 endmodule
 
-module D_latch_test();
-    reg D;
-    
+module enabled_D_latch_test();
+    reg enabled, D;
     wire Q, Qnot;
     
-    D_latch uut(D,Q,Qnot);
-    
+    enabled_D_latch uut(enabled,D,Q,Qnot);
     initial begin
-        D=1; #500;
-        D=0; #500;
-    end
+        enabled=0; D=0; #200;
+        enabled=1; D=1; #200;
+        enabled=0; D=1; #200;
+        enabled=1; D=1; #200;
+        enabled=1; D=0; #200;
+    end 
 endmodule
 
-
-
-
+module D_flip_flop_test();
+    reg clk, D;
+    wire Q, Qnot;
+    
+    D_flip_flop uut(clk,D,Q,Qnot);
+    initial begin
+        clk=0; D=0; #200;
+        clk=1; D=1; #200;
+        clk=0; D=1; #200;
+        clk=1; D=1; #200;
+        clk=1; D=0; #200;
+    end 
+endmodule
 
 //change this
 module JK_flipflop_test();

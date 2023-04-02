@@ -4,14 +4,6 @@
 //Muhammed Yusuf Mermer 150220762
 //////////////////////////////////////////////////////////////////////////////////
 
-module and_module(in1,in2,o);
-    input wire in1;
-    input wire in2;
-    output wire o;
-    assign o = in1 & in2;
-endmodule
-
-
 module nand_module(in1,in2,o);
     input wire in1;
     input wire in2;
@@ -46,17 +38,31 @@ module enabled_SR_latch(enabled,set,reset,Q,Qnot);
 endmodule
 
 module enabled_D_latch(enabled,D,Q,Qnot);
+    input wire enabled;
+    input wire D;
 
-    input wire enabled,D;
     wire Dnot;
-    assign Dnot = ~D;//as it was said in the introduction part, it is fine to use ~,&,|,{} operators in our project
-    // that is why I used the assignment with ~instead of using a nand 
+    
+    nand_module A(D,D,Dnot);
     
     output wire Q,Qnot;
-    enabled_SR_latch D1(enabled,D,Dnot,Q,Qnot);
-    
+
+    enabled_SR_latch D1(enabled,D,Dnot,Q,Qnot);    //I already created an enabled SR latch which is made from NAND gates, so I will be reusing it instead of writing everything with NANDS again
 endmodule
 
+module D_flip_flop(clk,D,Q,Qnot);
+    input wire clk;
+    input wire D;
+    
+    wire tempQ,tempQnot;
+    wire clknot;
+    
+    nand_module inverter(clk,clk,clknot);
+    output wire Q,Qnot;
+
+    enabled_D_latch master(clk,D,tempQ,tempQnot);    //I already created an enabled D latch which is made from NAND gates, so I will be reusing it instead of writing everything with NANDS again
+    enabled_D_latch slave(clknot,tempQ,Q,Qnot);    //I already created an enabled D latch which is made from NAND gates, so I will be reusing it instead of writing everything with NANDS again
+endmodule
 
 module JK_flipflop(input wire J, input wire K, input wire clock, output wire Q, output wire Qnot);
     wire notOfJQnot, JQnot, snot;
