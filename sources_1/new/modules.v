@@ -64,27 +64,69 @@ module D_flip_flop(clk,D,Q,Qnot);
     enabled_D_latch slave(clknot,tempQ,Q,Qnot);    //I already created an enabled D latch which is made from NAND gates, so I will be reusing it instead of writing everything with NANDS again
 endmodule
 
-module JK_flipflop(input wire J, input wire K, input wire clock, output wire Q, output wire Qnot);
-    wire notOfJQnot, JQnot, snot;
-    wire notOfKQ,KQ,rnot;
+module SR_flip_flop(clk,S,R,Q,Qnot);
+    input wire clk,S,R;
+    output wire Q,Qnot;
     
-
-    nand_module nand1(J,Qnot,notOfJQnot);
-    nand_module nand2(notOfJQnot,notOfJQnot,JQnot);
-    nand_module nand3(JQnot,clock,snot);
+    wire tempQ,tempQnot;
+    wire clknot;
     
-    nand_module nand4(K,Q,notOfKQ);
-    nand_module nand5(notOfKQ,notOfKQ,KQ);
-    nand_module nand6(KQ,clock,rnot);
-
-    nand_module nand7(snot,Qnot, Q);
-    nand_module nand8(rnot,Q,Qnot);
-
-
+    nand_module inverter(clk,clk,clknot);
+    
+    enabled_SR_latch master(clknot,S,R,tempQ,tempQnot);
+    enabled_SR_latch slave(clk,tempQ,tempQnot,Q,Qnot);
 endmodule
+/*
+module JK_flip_flop(clk,J,K,Q,Qnot);
+    input wire J,K,clk;
+    output wire Q,Qnot;
+    
+    wire notclk,tempQ,tempQnot;
+    
+    wire notJclk,Jclk,J2;
+    wire notKclk,Kclk,K2;
+    
+    nand_module inverter (clk,clk,notclk);
+    
+    nand_module NAND1(J,notclk,notJclk);  
+    nand_module NAND2(notJclk,notJclk,Jclk);
+    nand_module NAND3(Jclk,Qnot,J2);
+    
+    nand_module NAND4(K,notclk,notKclk);  
+    nand_module NAND5(notKclk,notKclk,Kclk);
+    nand_module NAND6(Kclk,Q,K2);
+    
+    SR_latch SR1(J2,K2,tempQ,tempQnot);
+    
+    enabled_SR_latch slave(clk,tempQ,tempQnot,Q,Qnot);
+    
+endmodule    
+*/
+/*
+module JK_flip_flop(clk,J,K,Q,Qnot);
+    input wire J,K,clk;
+    output wire Q,Qnot;
+    wire notK,temp1,temp2,D;
+    assign notK = ~K;
+    nand_module NAND1(J,Qnot,temp1);
+    nand_module NAND2(notK,Q,temp2);
+    nand_module NAND3(temp1,temp2,D);
+    
+    D_flip_flop HE(clk,D,Q,Qnot);
+endmodule
+*/
 
-
-
+module JK_flip_flop(clk,J,K,Q,Qnot);
+    input wire J,K,clk;
+    output wire Q,Qnot;
+    wire temp1,temp2,S,R;
+    nand_module NAND1(J,Qnot,temp1);
+    nand_module NAND2(K,Q,temp2);
+    nand_module inverter1(temp1,temp1,S);
+    nand_module inverter2(temp2,temp2,R);
+    
+    SR_flip_flop flippy(clk,S,R,Q,Qnot);
+endmodule
 
 module pulse_generator(input[15:0] in, input clock, input load_flag, output reg o);
 reg[15:0] out;

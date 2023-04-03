@@ -68,25 +68,21 @@ module D_flip_flop_test();
     end
 endmodule
 
-//change this
-module JK_flipflop_test();
-reg J,K,clock;
-wire Q,Qnot;
-JK_flipflop uut(J,K,clock,Q,Qnot);
-
-initial begin
-
-    clock=0;
-
-    J=1'b 0; K=1'b 0; #250;
-    J=1'b 0; K=1'b 1; #250;
-    J=1'b 1; K=1'b 0; #250;
-    J=1'b 1; K=1'b 1; #250;
-end
-always #125 clock=~clock;
+module JK_flip_flop_test();
+    reg J,K,clk;
+    wire Q,Qnot;
+    JK_flip_flop uut(clk,J,K,Q,Qnot);
+    initial begin
+        clk=0; 
+        forever #50 clk = ~clk;   
+    end
+    initial begin
+        J=0; K=0; #250;
+        J=0; K=1; #250;
+        J=1; K=0; #250;
+        J=1; K=1; #250;
+    end
 endmodule
-
-
 
 module pulse_generator_test_ ();
     reg[15:0] in;
