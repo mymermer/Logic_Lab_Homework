@@ -55,32 +55,52 @@ module D_flip_flop_test();
     wire Q, Qnot;
     
     D_flip_flop uut(clk,D,Q,Qnot);
-    
-    initial begin 
+    initial begin
         clk=0; 
-        forever #75 clk = ~clk;   
+        forever #20 clk = ~clk;    
     end
     initial begin
-        D=0; #250;
-        D=1; #250;
-        D=1; #250;
-        D=0; #250;
+        D=0; #100;
+        D=1; #100;
+        D=1; #100;
+        D=0; #100;
+        D=1; #100;
+        D=0; #100;
+        D=0; #100;
+        D=1; #100;
+        D=0; #100;
+        D=1; #100;
     end
 endmodule
 
+/*
+module edge_detector_test();
+    reg clk;
+    wire o;
+    edge_detector uut(clk,o);
+    initial begin
+    clk = 0;
+    forever #50 clk = ~clk;
+    end
+endmodule
+*/
 module JK_flip_flop_test();
     reg J,K,clk;
     wire Q,Qnot;
     JK_flip_flop uut(clk,J,K,Q,Qnot);
     initial begin
         clk=0; 
-        forever #50 clk = ~clk;   
+        forever #20 clk = ~clk;   
     end
     initial begin
-        J=0; K=0; #250;
-        J=0; K=1; #250;
-        J=1; K=0; #250;
-        J=1; K=1; #250;
+        J=0; K=0; #125;
+        J=0; K=1; #125;
+        J=1; K=0; #125;
+        J=1; K=1; #125;
+        J=1; K=0; #125;
+        J=1; K=1; #125;
+        J=0; K=0; #125;
+        J=0; K=1; #125;
     end
 endmodule
 
