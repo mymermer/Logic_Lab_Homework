@@ -75,7 +75,7 @@ module JK_flip_flop(clk,J,K,Q,Qnot);
     nand_module NAND2(notK,Q,temp2);
     nand_module NAND3(temp1,temp2,D);
     
-    D_flip_flop converter(clk,D,Q,Qnot);
+    D_flip_flop converter(~clk,D,Q,Qnot);
 endmodule
 
 
@@ -192,6 +192,38 @@ module JK_flip_flop(clk,J,K,Q,Qnot);
     enabled_SR_latch slave(clk,tempQ,tempQnot,Q,Qnot);
 endmodule    
 */
+
+module asyncUpCounter(input clock, input[3:0] J, input[3:0] K, output[3:0] o);
+
+wire [3:0] out;
+wire [3:0] subs;
+JK_flip_flop JK0(clock, J[0], K[0], out[0]);
+JK_flip_flop JK1(out[0], J[1], K[1], out[1]);
+JK_flip_flop JK2(out[1], J[2], K[2], out[2]);
+JK_flip_flop JK3(out[2], J[3], K[3], out[3]);
+
+assign subs=4'b1111;
+
+assign o=~subs&out | subs&~out;
+
+
+endmodule
+
+
+module syncUpCounter(input clock, input[3:0] J, input[3:0] K, output[3:0] o);
+wire[3:0] out;
+wire intermdiate1, intermdiate2;
+JK_flip_flop JK0(clock, J[0],K[0], out[0]);
+JK_flip_flop JK1(clock, J[1]|out[0],K[1]|out[0], out[1]);
+assign intermdiate1= out[0] & out[1];
+JK_flip_flop JK2(clock, J[2]| intermdiate1,K[2] | intermdiate1, out[2]);
+assign intermdiate2=intermdiate1 & out[2];
+JK_flip_flop JK3(clock,J[3] | intermdiate2,K[3] | intermdiate2, out[3]);
+assign o=out;
+
+endmodule
+
+
 
 module pulse_generator(input[15:0] in, input clock, input load_flag, output reg o);
 reg[15:0] out;
