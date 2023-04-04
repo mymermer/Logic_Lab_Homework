@@ -258,6 +258,72 @@ J[0]=1; K[0]=1;
 
 end
 
+endmodule
+
+
+module syncUpCounter_test();
+reg clock;
+reg[3:0] J;
+reg[3:0] K;
+wire[3:0] out;
+syncUpCounter uut(clock,J,K, out);
+
+initial begin
+clock=0;
+clock=~clock; #2;
+clock=~clock; #2;
+clock=~clock; #2;
+clock=~clock; #2;
+
+
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+
+
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+clock=~clock; #25;
+end
+
+initial begin
+J=4'b0000; K=4'b1111; #8;
+K=4'b0001; J=4'b0001;
+end
 
 
 endmodule
