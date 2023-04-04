@@ -330,7 +330,7 @@ endmodule
 
 
 
-module pulse_generator_test_ ();
+module pulse_generator_test ();
     reg[15:0] in;
     reg clock;
     reg load_flag;
