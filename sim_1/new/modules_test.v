@@ -104,6 +104,166 @@ module JK_flip_flop_test();
     end
 endmodule
 
+module asyncUpCounter_test();
+reg clock;
+reg[3:0]J;
+reg[3:0] K;
+wire[3:0] out;
+asyncUpCounter uut(clock,J,K, out);
+initial begin //30.000ns all jk flip-flops activated
+clock=0; #1;
+clock=1; #1;
+clock=0; #1;
+clock=1; #1;
+clock=0; #1;
+clock=1; #1;
+clock=0; #1;
+clock=1; #1;
+clock=0; #1;
+clock=1; #1;
+clock=0; #1;
+clock=1; #1;
+clock=0; #1;
+clock=1; #1;
+clock=0; #1;
+clock=1; #1;
+clock=0; #1;
+clock=1; #1;
+clock=0; #1;
+clock=1; #1;
+clock=0; #1;
+clock=1; #1;
+clock=0; #1;
+clock=1; #1;
+clock=0; #1;
+clock=1; #1;
+clock=0; #1;
+clock=1; #1;
+
+
+
+
+
+
+clock=0; #22;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+clock=0; #50;
+clock=1; #50;
+end
+
+
+initial begin
+J[3]=0; K[3]=1; #5;
+J[3]=1; K[3]=0; #5;
+J[3]=0; K[3]=1; #5;
+J[3]=1; K[3]=0; #5;
+J[3]=0; K[3]=1; #5;
+J[3]=1; K[3]=0; #5;
+
+
+J[3]=1; K[3]=1;
+
+end
+
+initial begin
+J[2]=0; K[2]=0; #4;
+J[2]=0; K[2]=0; #4;
+J[2]=0; K[2]=1; #4;
+J[2]=1; K[2]=0; #4;
+J[2]=0; K[2]=1; #4;
+J[2]=1; K[2]=0; #4;
+J[2]=0; K[2]=1; #4;
+
+J[2]=1; K[2]=1;
+
+
+end
+
+
+initial begin
+J[1]=0; K[1]=1; #3;
+J[1]=1; K[1]=0; #3;
+J[1]=0; K[1]=1; #3;
+J[1]=1; K[1]=0; #3;
+J[1]=0; K[1]=1; #3;
+J[1]=1; K[1]=0; #3;
+J[1]=0; K[1]=1; #3;
+J[1]=1; K[1]=0; #3;
+J[1]=0; K[1]=1; #3;
+
+
+J[1]=1; K[1]=1;
+
+
+end
+
+
+initial begin
+J[0]=0; K[0]=1; #2;
+J[0]=1; K[0]=0; #2;
+J[0]=0; K[0]=1; #2;
+J[0]=1; K[0]=0; #2;
+J[0]=0; K[0]=1; #2;
+J[0]=1; K[0]=0; #2;
+J[0]=0; K[0]=1; #2;
+J[0]=1; K[0]=0; #2;
+J[0]=0; K[0]=1; #2;
+J[0]=1; K[0]=0; #2;
+J[0]=0; K[0]=1; #2;
+J[0]=1; K[0]=0; #2;
+J[0]=0; K[0]=1; #2;
+J[0]=1; K[0]=0; #2;
+J[0]=0; K[0]=1; #2;
+
+J[0]=1; K[0]=1;
+
+end
+
+
+
+endmodule
+
+
+
 module pulse_generator_test_ ();
     reg[15:0] in;
     reg clock;
