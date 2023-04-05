@@ -467,5 +467,5 @@ module pulse_generator_test_11_5_gap();
     end
 
     always #5 clock = ~clock;
-    
+    //end
 endmodule
