@@ -329,24 +329,143 @@ end
 endmodule
 
 
+//pulse generator
+// module pulse_generator_test ();
+//     reg[15:0] in;
+//     reg clock;
+//     reg load_flag;
+//     wire out;
 
-module pulse_generator_test ();
+//     pulse_generator pg1(in,clock, load_flag, out);
+
+
+//     initial begin
+//     clock=0;
+//     load_flag=1;
+//     in=16'b101001001010100;   #500;
+//     in=16'b010010110001101;  #500;
+
+//     end
+// always #15 clock=~clock;
+// always #100 load_flag=~load_flag;
+
+// endmodule
+
+
+
+module pulse_generator_test_1_2_freq();
+
     reg[15:0] in;
     reg clock;
     reg load_flag;
-    wire out;
+    wire o;
 
-    pulse_generator pg1(in,clock, load_flag, out);
-
+    pulse_generator uut(in, clock, load_flag, o);
 
     initial begin
-    clock=0;
-    load_flag=1;
-    in=16'b101001001010100;   #500;
-    in=16'b010010110001101;  #500;
-    
-    end
-always #15 clock=~clock;
-always #100 load_flag=~load_flag;
+        in=16'b1010101010101010; //difference 
+        clock =0;
+        load_flag =1; #10; load_flag=0;
 
+    end
+
+    always #5 clock = ~clock;
+
+endmodule
+
+
+module pulse_generator_test_1_4_freq();
+
+    reg[15:0] in;
+    reg clock;
+    reg load_flag;
+    wire o;
+
+    pulse_generator uut(in, clock, load_flag, o);
+
+    initial begin
+        in=16'b1100110011001100; //difference 
+        clock =0;
+        load_flag =1; #10; load_flag=0;
+    end
+
+    always #5 clock = ~clock;
+    
+endmodule
+
+module pulse_generator_test_1_8_freq();
+
+    reg[15:0] in;
+    reg clock;
+    reg load_flag;
+    wire o;
+
+    pulse_generator uut(in, clock, load_flag, o);
+
+    initial begin
+        in=16'b1111000011110000; //difference 
+        clock =0;
+        load_flag =1; #10; load_flag=0;
+    end
+
+    always #5 clock = ~clock;
+    
+endmodule
+
+module pulse_generator_test_1_7_gap();
+
+    reg[15:0] in;
+    reg clock;
+    reg load_flag;
+    wire o;
+
+    pulse_generator uut(in, clock, load_flag, o);
+
+    initial begin
+        in=16'b0000000100000001; //difference 
+        clock =0;
+        load_flag =1; #10; load_flag=0;
+    end
+
+    always #5 clock = ~clock;
+    
+endmodule
+
+
+module pulse_generator_test_3_13_gap();
+
+    reg[15:0] in;
+    reg clock;
+    reg load_flag;
+    wire o;
+
+    pulse_generator uut(in, clock, load_flag, o);
+
+    initial begin
+        in=16'b1110000000000000; //difference 
+        clock =0;
+        load_flag =1; #10; load_flag=0;
+    end
+
+    always #5 clock = ~clock;
+    
+endmodule
+
+module pulse_generator_test_11_5_gap();
+
+    reg[15:0] in;
+    reg clock;
+    reg load_flag;
+    wire o;
+
+    pulse_generator uut(in, clock, load_flag, o);
+
+    initial begin
+        in=16'b1111111111100000; //difference 
+        clock =0;
+        load_flag =1; #10; load_flag=0;
+    end
+
+    always #5 clock = ~clock;
+    
 endmodule
