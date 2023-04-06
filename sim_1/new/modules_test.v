@@ -73,17 +73,6 @@ module D_flip_flop_test();
     end
 endmodule
 
-/*
-module edge_detector_test();
-    reg clk;
-    wire o;
-    edge_detector uut(clk,o);
-    initial begin
-    clk = 0;
-    forever #50 clk = ~clk;
-    end
-endmodule
-*/
 module JK_flip_flop_test();
     reg J,K,clk;
     wire Q,Qnot;
@@ -327,30 +316,6 @@ end
 
 
 endmodule
-
-
-//pulse generator
-// module pulse_generator_test ();
-//     reg[15:0] in;
-//     reg clock;
-//     reg load_flag;
-//     wire out;
-
-//     pulse_generator pg1(in,clock, load_flag, out);
-
-
-//     initial begin
-//     clock=0;
-//     load_flag=1;
-//     in=16'b101001001010100;   #500;
-//     in=16'b010010110001101;  #500;
-
-//     end
-// always #15 clock=~clock;
-// always #100 load_flag=~load_flag;
-
-// endmodule
-
 
 
 module pulse_generator_test_1_2_freq();

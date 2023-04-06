@@ -64,134 +64,19 @@ module D_flip_flop(clk,D,Q,Qnot);
     enabled_D_latch slave(clknot,tempQ,Q,Qnot);    //I already created an enabled D latch which is made from NAND gates, so I will be reusing it instead of writing everything with NANDS again
 endmodule
 
-// JK_flip_flop from D flip_flop
-
 module JK_flip_flop(clk,J,K,Q,Qnot);
     input wire J,K,clk;
     output wire Q,Qnot;
+    wire clknot;
+    nand_module inverter1(clk,clk,clknot);
     wire notK,temp1,temp2,D;
-    nand_module inverter(K,K,notK);
+    nand_module inverter2(K,K,notK);
     nand_module NAND1(J,Qnot,temp1);
     nand_module NAND2(notK,Q,temp2);
     nand_module NAND3(temp1,temp2,D);
     
-    D_flip_flop converter(~clk,D,Q,Qnot);
+    D_flip_flop converter(clknot,D,Q,Qnot);
 endmodule
-
-
-
-//SR and JK flipflops working with some errors
-/*
-module SR_flip_flop(clk,S,R,Q,Qnot);
-    input wire clk,S,R;
-    output wire Q,Qnot;
-    
-    wire tempQ,tempQnot;
-    wire clknot;
-    
-    nand_module inverter(clk,clk,clknot);
-    
-    enabled_SR_latch master(clk,~S,~R,tempQ,tempQnot);
-    enabled_SR_latch slave(clknot,~tempQ,~tempQnot,Q,Qnot);
-endmodule
-
-module JK_flip_flop(clk,J,K,Q,Qnot);
-    input wire J,K,clk;
-    output wire Q,Qnot;
-    wire temp1,temp2,S,R;
-    nand_module NAND1(J,Qnot,temp1);
-    nand_module NAND2(K,Q,temp2);
-    nand_module inverter1(temp1,temp1,S);
-    nand_module inverter2(temp2,temp2,R);
-    
-    SR_flip_flop flippy(clk,S,R,Q,Qnot);
-endmodule
-*/
-
-
-
-/*
-module SR_flip_flop(clk,S,R,Q,Qnot);
-    input wire clk,S,R;
-    output wire Q,Qnot;
-    
-    wire tempQ,tempQnot;
-    wire clknot;
-    
-    nand_module inverter1(clk,clk,clknot);
-    
-    enabled_SR_latch master(clknot,S,R,tempQ,tempQnot);
-    enabled_SR_latch slave(clk,tempQnot,tempQ,Q,Qnot);
-endmodule
-*/
-
-/*
-module JK_flip_flop(clk,J,K,Q,Qnot);
-    input wire J,K,clk;
-    output wire Q,Qnot;
-    wire temp1,temp2,S,R,notS,notR;
-    nand_module NAND1(J,Qnot,S);
-    nand_module NAND2(K,Q,R);
-    SR_flip_flop converter(clk,S,R,Q,Qnot);
-endmodule
-*/
-
-
-//I created the following modules to test making flipflops using an edge detector with propagation delay instead of using master and slave design.
-//because we had trouble with creating a JK_flip_flop, it was because of the fact that the enabled SR_latch module that we used to make our SR_flip_flop was an active low
-//but in the end there was no need for the following code as we fixed it, but we spent a lot of time on it so I just decided to comment it incase.
-
-/*
-module delayed_nand(in1,in2,o);
-    input wire in1;
-    input wire in2;
-    output wire o;
-    assign #0.1 o = ~(in1 & in2);
-endmodule
-module edge_detector(clk,o);
-    input wire clk;
-    output wire o;
-    wire clknot,oinv;
-
-    delayed_nand inverter1(clk,clk,clknot);
-    //not #2 o1(clknot,clk);
-    nand_module NAND1(clknot,clk,oinv);
-    nand_module inverter2(oinv,oinv,o);
-endmodule
-module SR_flip_flop(clk,S,R,Q,Qnot);
-    input wire clk,S,R;
-    output wire Q,Qnot;
-    wire enable;
-    edge_detector clocker(clk,enable);
-    enabled_SR_latch flipflop(enable,S,R,Q,Qnot);
-endmodule
-*/
-// JK_flip_flop from scratch but has a problem 
-/*
-module JK_flip_flop(clk,J,K,Q,Qnot);
-    input wire J,K,clk;
-    output wire Q,Qnot;
-    
-    wire notclk,tempQ,tempQnot;
-    
-    wire notJclk,Jclk,J2;
-    wire notKclk,Kclk,K2;
-    
-    nand_module inverter (clk,clk,notclk);
-    
-    nand_module NAND1(J,notclk,notJclk);  
-    nand_module NAND2(notJclk,notJclk,Jclk);
-    nand_module NAND3(Jclk,Qnot,J2);
-    
-    nand_module NAND4(K,notclk,notKclk);  
-    nand_module NAND5(notKclk,notKclk,Kclk);
-    nand_module NAND6(Kclk,Q,K2);
-    
-    SR_latch SR1(J2,K2,tempQ,tempQnot);
-    
-    enabled_SR_latch slave(clk,tempQ,tempQnot,Q,Qnot);
-endmodule    
-*/
 
 module asyncUpCounter(input clock, input[3:0] J, input[3:0] K, output[3:0] o);
 
