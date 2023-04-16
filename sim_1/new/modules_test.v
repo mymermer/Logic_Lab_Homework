@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 //Abdullah Jafar Mansour Shamout 150200919
-//
+//Muhammed Yusuf Mermer 150220762
 //////////////////////////////////////////////////////////////////////////////////
 
 
@@ -22,7 +22,26 @@ end
 
 endmodule
 
+// module Bus_8bit_test();
 
+
+// endmodule
+
+module part2_main_test();
+
+reg [7:0] D1; reg [7:0] D2; reg S; wire[7:0] O1; wire[7:0] O2;
+
+
+part2_main uut(D1, D2, S, O1, O2);
+
+initial begin
+    D1=8'b10100111; D2= 8'b01100010; S=0; #50;
+    D1=8'b00100101; D2= 8'b11101000; #50;
+    $finish;
+end
+always #5 S=~S;
+
+endmodule
 
 module Memory_8bit_test();
 reg [7:0]I;

@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 //Abdullah Jafar Mansour Shamout 150200919
-//
+//Muhammed Yusuf Mermer 150220762
 //////////////////////////////////////////////////////////////////////////////////
 
 
@@ -17,12 +17,31 @@ module Bus_8bit(D1,D2,S,O);
     input wire [7:0] D2;
     input wire S;
     output wire [7:0] O;
-    wire [7:0] O1;
-    wire [7:0] O2;
+    Tristate_buffer buf1(D1,~S,O);
+    Tristate_buffer buf2(D2,S,O);
+endmodule
+
+module Bus_8bit_with_2_outs(D1,D2,S,O1,O2);
+    input wire [7:0] D1;
+    input wire [7:0] D2;
+    input wire S;
+    output wire [7:0] O1;
+    output wire [7:0] O2;
+
     Tristate_buffer buf1(D1,~S,O1);
     Tristate_buffer buf2(D2,S,O2);
-    assign O = O1|O2; 
+
 endmodule
+
+
+module part2_main(input [7:0] D1,input [7:0] D2, input S, output[7:0] O1, output[7:0] O2);
+    wire[7:0] inter;
+    Bus_8bit bus1(D1,D2, S, inter);
+    Bus_8bit_with_2_outs bus2(inter, inter, S, O1,O2);
+
+
+endmodule
+
 
 module Memory_8bit(clk,I,select,read,write,reset,O);
     input wire [7:0] I;
@@ -75,3 +94,15 @@ module Memory_8byte(clk,I,address,chipselect,read,write,reset,O);
     Tristate_buffer buf1(tempO,chipselect,O);
 endmodule
 
+module Memory_32byte(input clock, input[7:0] I, input [4:0] address,input read,
+input write,input reset ,output [7:0] O);
+
+Memory_8byte mem1(clk,I,address[4:2], ~address[0] && ~address[1],read,write,reset,O );
+Memory_8byte mem2(clk,I,address[4:2], ~address[0] && address[1],read,write,reset,O );
+Memory_8byte mem3(clk,I,address[4:2], address[0] && ~address[1],read,write,reset,O );
+Memory_8byte mem4(clk,I,address[4:2], address[0] && address[1],read,write,reset,O );
+
+
+
+
+endmodule
