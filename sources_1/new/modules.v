@@ -50,14 +50,6 @@ module Memory_8bit(clk,I,select,read,write,reset,O);
     end
 endmodule
 
-module decoder(address,O);
-input wire address;
-output wire O;
-
-
-
-endmodule
-
 module Memory_8byte(clk,I,address,chipselect,read,write,reset,O);
     input wire [7:0] I;
     input wire clk,read,write,reset;
