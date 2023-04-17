@@ -97,10 +97,16 @@ endmodule
 module Memory_32byte(input clock, input[7:0] I, input [4:0] address,input read,
 input write,input reset ,output [7:0] O);
 
-Memory_8byte mem1(clk,I,address[4:2], ~address[0] && ~address[1],read,write,reset,O );
-Memory_8byte mem2(clk,I,address[4:2], ~address[0] && address[1],read,write,reset,O );
-Memory_8byte mem3(clk,I,address[4:2], address[0] && ~address[1],read,write,reset,O );
-Memory_8byte mem4(clk,I,address[4:2], address[0] && address[1],read,write,reset,O );
+wire S0,S1,S2,S3;
+and(S0,~address[4], ~address[3]);
+and(S1,~address[4] , address[3]);
+and(S2,address[4] , ~address[3]);
+and(S3,address[4] , address[3]);
+
+Memory_8byte mem1(clk,I,address[2:0], S0,read,write,reset,O );
+Memory_8byte mem2(clk,I,address[2:0], S1,read,write,reset,O );
+Memory_8byte mem3(clk,I,address[2:0], S2,read,write,reset,O );
+Memory_8byte mem4(clk,I,address[2:0], S3,read,write,reset,O );
 
 
 

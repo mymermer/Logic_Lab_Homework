@@ -108,3 +108,27 @@ end
 
 endmodule
 
+
+module Memory_32byte_test();
+
+
+reg clock; reg[7:0] I; reg [4:0] address; reg read;
+reg write; reg reset; wire [7:0] O;
+
+Memory_32byte uut( clock, I,address, read,write,reset,O);
+
+initial begin
+clock=0;  read=0;  write=0;
+reset=1;#1; reset=0; #20;//Reset all lines
+I=8'd25; address=5'd30; write=1;  #15;//Write 25 to Address 30
+I=8'd15; address=5'd20;  #15;  //Write 15 to Address 20
+write=0; address=5'd12; read=1; #15; //Read Address 12
+write=1; read=0; I=8'd18; address=5'd10;  #15; //Write 18 to Address 10
+write=0; read=1; address=5'd15;  #15; //Read Address 15
+address=5'd30;  #15; //Read Address 30
+address=5'd10; #15; //Read Address 10
+$finish;
+end
+always #1 clock=~clock;
+
+endmodule
