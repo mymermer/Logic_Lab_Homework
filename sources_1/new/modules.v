@@ -94,7 +94,7 @@ module Memory_8byte(clk,I,address,chipselect,read,write,reset,O);
     Tristate_buffer buf1(tempO,chipselect,O);
 endmodule
 
-module Memory_32byte(input clock, input[7:0] I, input [4:0] address,input read,
+module Memory_32byte(input clk, input[7:0] I, input [4:0] address,input read,
 input write,input reset ,output [7:0] O);
 
 wire S0,S1,S2,S3;
