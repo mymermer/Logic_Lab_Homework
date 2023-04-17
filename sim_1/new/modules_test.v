@@ -22,10 +22,20 @@ end
 
 endmodule
 
-// module Bus_8bit_test();
+module Bus_8bit_test();
+    reg [7:0] D1; reg [7:0] D2; reg S; wire[7:0] O; 
+
+    Bus_8bit uut(D1, D2, S, O);
+
+    initial begin
+        D1=8'b10100111; D2= 8'b01100010; S=0; #50;
+        D1=8'b00100101; D2= 8'b11101000; #50;
+        $finish;
+    end
+    always #5 S=~S;
 
 
-// endmodule
+endmodule
 
 module part2_main_test();
 
@@ -112,23 +122,46 @@ endmodule
 module Memory_32byte_test();
 
 
-reg clock; reg[7:0] I; reg [4:0] address; reg read;
-reg write; reg reset; wire [7:0] O;
+    reg clock; reg[7:0] I; reg [4:0] address; reg read;
+    reg write; reg reset; wire [7:0] O;
 
-Memory_32byte uut( clock, I,address, read,write,reset,O);
+    Memory_32byte uut( clock, I,address, read,write,reset,O);
 
-initial begin
-clock=0;  read=0;  write=0;
-reset=1;#1; reset=0; #20;//Reset all lines
-I=8'd25; address=5'd30; write=1;  #15;//Write 25 to Address 30
-I=8'd15; address=5'd20;  #15;  //Write 15 to Address 20
-write=0; address=5'd12; read=1; #15; //Read Address 12
-write=1; read=0; I=8'd18; address=5'd10;  #15; //Write 18 to Address 10
-write=0; read=1; address=5'd15;  #15; //Read Address 15
-address=5'd30;  #15; //Read Address 30
-address=5'd10; #15; //Read Address 10
-$finish;
-end
-always #1 clock=~clock;
+    initial begin
+    clock=0;  read=0;  write=0;
+    reset=1;#1; reset=0; #20;//Reset all lines
+    I=8'd25; address=5'd30; write=1;  #15;//Write 25 to Address 30
+    I=8'd15; address=5'd20;  #15;  //Write 15 to Address 20
+    write=0; address=5'd12; read=1; #15; //Read Address 12
+    write=1; read=0; I=8'd18; address=5'd10;  #15; //Write 18 to Address 10
+    write=0; read=1; address=5'd15;  #15; //Read Address 15
+    address=5'd30;  #15; //Read Address 30
+    address=5'd10; #15; //Read Address 10
+    $finish;
+    end
+    always #1 clock=~clock;
 
+endmodule
+
+
+module Memory_128byte_test ();
+    reg clock; 
+    reg [31:0] I;
+    reg[4:0] address; reg reset; reg read ; reg write;  wire[31:0] O;
+    Memory_128byte uut(clock, I, address, reset, read ,  write, O);
+
+    initial begin
+    clock=0;  read=0;  write=0;
+    reset=1;#1; reset=0; #20;//Reset all lines
+    I=32'h74FF45FF; address=5'd30; write=1;  #15;//Write 25 to Address 30
+    I=32'h2FAB45EF; address=5'd20;  #15;  //Write 15 to Address 20
+    write=0; address=5'd12; read=1; #15; //Read Address 12
+    write=1; read=0; I=32'h65FBF5EC; address=5'd10;  #15; //Write 18 to Address 10
+    write=0; read=1; address=5'd15;  #15; //Read Address 15
+    address=5'd30;  #15; //Read Address 30
+    address=5'd10; #15; //Read Address 10
+    $finish;
+    end
+
+    always #1 clock=~clock;
 endmodule

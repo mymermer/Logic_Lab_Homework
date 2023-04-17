@@ -104,7 +104,13 @@ Memory_8byte mem2(clk,I,address[2:0], S1,read,write,reset,O );
 Memory_8byte mem3(clk,I,address[2:0], S2,read,write,reset,O );
 Memory_8byte mem4(clk,I,address[2:0], S3,read,write,reset,O );
 
+endmodule
 
 
+module Memory_128byte(input clk,input [31:0] I,input[4:0] address, input reset, input read ,input write,  output[31:0] O);
+    Memory_32byte mem0(clk, I[7:0]  , address,read, write, reset , O[7:0]  );
+    Memory_32byte mem1(clk, I[15:8] , address,read, write, reset , O[15:8] );
+    Memory_32byte mem2(clk, I[23:16], address,read, write, reset , O[23:16]);
+    Memory_32byte mem3(clk, I[31:24], address,read, write, reset , O[31:24]);
 
 endmodule
