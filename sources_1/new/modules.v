@@ -38,8 +38,6 @@ module part2_main(input [7:0] D1,input [7:0] D2, input S, output[7:0] O1, output
     wire[7:0] inter;
     Bus_8bit bus1(D1,D2, S, inter);
     Bus_8bit_with_2_outs bus2(inter, inter, S, O1,O2);
-
-
 endmodule
 
 
@@ -74,7 +72,6 @@ module Memory_8byte(clk,I,address,chipselect,read,write,reset,O);
     input wire clk,read,write,reset;
     input wire chipselect;
     input wire [2:0] address;
-    wire [7:0] tempO;
     output wire [7:0] O;
     wire [7:0] ATS; //Address table selection
         generate
@@ -83,15 +80,14 @@ module Memory_8byte(clk,I,address,chipselect,read,write,reset,O);
                 Memory_8bit N(
                     .clk(clk),
                     .I(I),
-                    .select(ATS[i]),
+                    .select(ATS[i] & chipselect),
                     .read(read),
                     .write(write),
                     .reset(reset),
-                    .O(tempO)
+                    .O(O)
                 );
             end
         endgenerate
-    Tristate_buffer buf1(tempO,chipselect,O);
 endmodule
 
 module Memory_32byte(input clk, input[7:0] I, input [4:0] address,input read,
