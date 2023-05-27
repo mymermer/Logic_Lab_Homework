@@ -1,7 +1,0 @@
-Running: xsim.dir/sixteen_bit_adder_subs_module_test_behav/xsimk.exe -simmode gui -wdb sixteen_bit_adder_subs_module_test_behav.wdb -simrunnum 0 -socket 62974
-Design successfully loaded
-Design Loading Memory Usage: 7252 KB (Peak: 7252 KB)
-Design Loading CPU Usage: 15 ms
-Simulation completed
-Simulation Memory Usage: 7856 KB (Peak: 7856 KB)
-Simulation CPU Usage: 61 ms
