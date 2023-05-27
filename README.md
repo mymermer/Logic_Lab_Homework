@@ -1,5 +1,5 @@
 # logic_lab_homeworks
-You can see all requirements and reports of 3 laboratory homeworks from their branches.
+You can see requirements and reports of all 3 laboratory homeworks from their own branches.
 
 [Homework 1](https://github.com/mymermer/logic_lab_homeworks/tree/homework_1)
 
